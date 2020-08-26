@@ -26,7 +26,7 @@ class HouseTest < Minitest::Test
   def test_it_can_return_house_address
 
     assert_equal "123 sugar lane", @house.address
-    assert_equal "123 fake street", @house.address
+    assert_equal "123 fake street", @house2.address
   end
 
   def test_house_initially_does_not_have_rooms
@@ -35,9 +35,11 @@ class HouseTest < Minitest::Test
   end
 
   def test_house_rooms_exist_after_add_room
+    @house.add_room(@room_1)
+    @house2.add_room(@room_2)
 
-    assert_instance_of Room, @house.add_room(@room_1)
-    assert_instance_of Room, @house2.add_room(@room_2)
+    assert_instance_of Room, @house.rooms.first
+    assert_instance_of Room, @house2.rooms.first
   end
 
   def test_house_rooms_returns_instantiated_rooms
@@ -45,7 +47,8 @@ class HouseTest < Minitest::Test
     @house.add_room(@room_1)
     @house.add_room(@room_2)
 
-    assert_instance_of Room, @house.rooms
+    assert_instance_of Room, @house.rooms.first
+    assert_instance_of Room, @house.rooms.last
   end
 
 
