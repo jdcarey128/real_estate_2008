@@ -42,4 +42,21 @@ class House
     }
   end
 
+  def price_per_square_foot
+    (price.to_f / area).round(2)
+  end
+
+  def rooms_sorted_by_area
+    sorted = rooms.sort_by do |room|
+      room.area
+    end
+    sorted.reverse
+  end
+
+  def rooms_by_category
+    @rooms.group_by do |room|
+      room.category
+    end
+  end
+
 end
