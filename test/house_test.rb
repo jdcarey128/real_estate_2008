@@ -10,6 +10,8 @@ class HouseTest < Minitest::Test
     @house2 = House.new("$240000", "123 fake street")
     @room_1 = Room.new(:bedroom, 10, '13')
     @room_2 = Room.new(:bedroom, 11, '15')
+    @room_3 = Room.new(:living_room, 25, '15')
+    @room_4 = Room.new(:basement, 30, '41')
   end
 
   def test_it_exists
@@ -51,6 +53,56 @@ class HouseTest < Minitest::Test
     assert_instance_of Room, @house.rooms.last
   end
 
+  def test_it_returns_above_market_average_with_price_over_500000
+
+    assert_equal false, @house.above_market_average?
+  end
+
+  def test_added_rooms_each_instance_of_room
+    skip
+
+    @house.add_room(@room_1)
+    @house.add_room(@room_2)
+    @house.add_room(@room_3)
+    @house.add_room(@room_4)
+
+    assert_instance_of Room, @house.rooms.first
+    assert_instance_of Room, @house.rooms[1]
+    assert_instance_of Room, @house.rooms[2]
+    assert_instance_of Room, @house.rooms.last
+  end
+
+  def test_it_can_sort_instantiated_rooms_by_category
+    skip
+    @house.add_room(@room_1)
+    @house.add_room(@room_2)
+    @house.add_room(@room_3)
+    @house.add_room(@room_4)
+
+    assert_equal [@room_1, @room2], @house.rooms_from_category(:bedroom)
+    assert_equal [@room_4], @house.rooms_from_category(:basement)
+  end
+
+  def test_it_can_calculate_entire_house_area
+    skip
+    @house.add_room(@room_1)
+    @house.add_room(@room_2)
+    @house.add_room(@room_3)
+    @house.add_room(@room_4)
+
+    assert_equal 1900, @house.area
+  end
+
+  def test_it_can_return_house_price_and_address_details_in_hash
+    skip
+
+    hash = {
+      "price" => 400000,
+      "address" => "123 sugar lane"
+            }
+
+    assert_equal hash, @house.details
+  end
 
 
 end
