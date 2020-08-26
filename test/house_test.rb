@@ -53,13 +53,17 @@ class HouseTest < Minitest::Test
     assert_instance_of Room, @house.rooms.last
   end
 
-  def test_it_returns_above_market_average_with_price_over_500000
+  def test_it_returns_market_average
+
+    assert_equal 500000, @house.market_average
+  end
+
+  def test_it_returns_boolean_for_above_market_average
 
     assert_equal false, @house.above_market_average?
   end
 
   def test_added_rooms_each_instance_of_room
-    skip
 
     @house.add_room(@room_1)
     @house.add_room(@room_2)
@@ -73,18 +77,16 @@ class HouseTest < Minitest::Test
   end
 
   def test_it_can_sort_instantiated_rooms_by_category
-    skip
     @house.add_room(@room_1)
     @house.add_room(@room_2)
     @house.add_room(@room_3)
     @house.add_room(@room_4)
 
-    assert_equal [@room_1, @room2], @house.rooms_from_category(:bedroom)
+    assert_equal [@room_1, @room_2], @house.rooms_from_category(:bedroom)
     assert_equal [@room_4], @house.rooms_from_category(:basement)
   end
 
   def test_it_can_calculate_entire_house_area
-    skip
     @house.add_room(@room_1)
     @house.add_room(@room_2)
     @house.add_room(@room_3)
@@ -94,7 +96,6 @@ class HouseTest < Minitest::Test
   end
 
   def test_it_can_return_house_price_and_address_details_in_hash
-    skip
 
     hash = {
       "price" => 400000,
