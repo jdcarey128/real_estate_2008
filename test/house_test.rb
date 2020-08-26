@@ -105,5 +105,38 @@ class HouseTest < Minitest::Test
     assert_equal hash, @house.details
   end
 
+  def test_it_can_return_price_per_square_foot
+    skip
+    @house.add_room(@room_1)
+    @house.add_room(@room_2)
+    @house.add_room(@room_3)
+    @house.add_room(@room_4)
 
+    assert_equal 210.53, @house.price_per_square_foot
+  end
+
+  def test_it_can_return_rooms_sorted_by_area
+    skip 
+    @house.add_room(@room_1)
+    @house.add_room(@room_2)
+    @house.add_room(@room_3)
+    @house.add_room(@room_4)
+    rooms_sorted = [@room_4, @room_3, @room_2, @room_1]
+
+    assert_equal rooms_sorted, @house.rooms_sorted_by_area
+  end
+
+  def test_it_returns_rooms_by_category_in_hash
+    skip 
+    @house.add_room(@room_1)
+    @house.add_room(@room_2)
+    @house.add_room(@room_3)
+    @house.add_room(@room_4)
+
+    category_hash = {
+      bedroom: [@room_1, @room_2],
+      living_room: @room_3,
+      basement: @room_4
+    }
+    assert_equal category_hash, @house.rooms_by_category
 end
