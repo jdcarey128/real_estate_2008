@@ -106,7 +106,6 @@ class HouseTest < Minitest::Test
   end
 
   def test_it_can_return_price_per_square_foot
-    skip
     @house.add_room(@room_1)
     @house.add_room(@room_2)
     @house.add_room(@room_3)
@@ -116,7 +115,6 @@ class HouseTest < Minitest::Test
   end
 
   def test_it_can_return_rooms_sorted_by_area
-    skip 
     @house.add_room(@room_1)
     @house.add_room(@room_2)
     @house.add_room(@room_3)
@@ -127,7 +125,6 @@ class HouseTest < Minitest::Test
   end
 
   def test_it_returns_rooms_by_category_in_hash
-    skip 
     @house.add_room(@room_1)
     @house.add_room(@room_2)
     @house.add_room(@room_3)
@@ -135,8 +132,9 @@ class HouseTest < Minitest::Test
 
     category_hash = {
       bedroom: [@room_1, @room_2],
-      living_room: @room_3,
-      basement: @room_4
+      living_room: [@room_3],
+      basement: [@room_4]
     }
     assert_equal category_hash, @house.rooms_by_category
+  end
 end
